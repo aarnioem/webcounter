@@ -22,7 +22,9 @@ def reset():
 def set_counter():
     new_value = request.form.get("value")
     try:
+        if int(new_value) < 0:
+            return "Invalid value"
         cnt.set_counter(int(new_value))
-    except TypeError:
+    except (TypeError):
         return "Invalid value"
     return redirect("/")
